@@ -79,3 +79,31 @@ You can play the game online at: [https://mathgame-1906.web.app](https://mathgam
    ```
    https://mathgame-1906.web.app
    ```
+
+## GitHub Repository Setup
+
+### Setting up SSH Authentication for GitHub
+
+1. Check if you already have SSH keys:
+   ```bash
+   ls -la ~/.ssh
+   ```
+
+2. If you don't have SSH keys, generate them:
+   ```bash
+   ssh-keygen -t ed25519 -C "your_email@example.com"
+   ```
+
+3. Add the SSH key to your GitHub account:
+   - Copy your public key: 
+     ```bash
+     cat ~/.ssh/id_ed25519.pub
+     ```
+   - Go to GitHub.com > Settings > SSH and GPG keys > New SSH key
+   - Paste your key and save
+
+4. Change your remote URL to use SSH:
+   ```bash
+   git remote set-url origin git@github.com:WENZHUOLIANG/mathgame-1906.git
+   git push -u origin main
+   ```
