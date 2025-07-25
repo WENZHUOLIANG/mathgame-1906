@@ -1,0 +1,40 @@
+<div class="math-game-container">
+  <h1>Math Game</h1>
+  
+  <div *ngIf="!showReward" class="game-area">
+    <div *ngIf="currentProblem" class="problem">
+      <h2>Solve the problem:</h2>
+      <div class="problem-text column-calculation">
+        <div class="calculation-row first-number">{{ currentProblem.firstNumber }}</div>
+        <div class="calculation-row">
+          <span class="operation">{{ currentProblem.operation }}</span>
+          <span class="second-number">{{ currentProblem.secondNumber }}</span>
+        </div>
+        <div class="calculation-row line"></div>
+        <div class="calculation-row answer">?</div>
+      </div>
+      
+      <div class="answer-input">
+        <input type="number" [(ngModel)]="userAnswer" placeholder="Your answer" />
+        <button (click)="checkAnswer()" [disabled]="isCorrect === true">Check Answer</button>
+      </div>
+      
+      <div *ngIf="feedback" class="feedback" [ngClass]="{'correct': isCorrect, 'incorrect': isCorrect === false}">
+        <p>{{ feedback }}</p>
+        <div *ngIf="isCorrect" class="star">★</div>
+        <button *ngIf="isCorrect" (click)="nextQuestion()" class="next-button">Next Question</button>
+      </div>
+      
+      <div class="stars-container">
+        <span *ngFor="let i of [].constructor(starCount)" class="star">★</span>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="showReward" class="reward">
+    <h2>Congratulations, Darren!</h2>
+    <p>You've earned 5 stars!</p>
+    <img src="assets/images/thomas_train.jpeg" alt="Thomas Train" class="reward-image" />
+    <button (click)="resetGame()" class="reset-button">Play Again</button>
+  </div>
+</div>
